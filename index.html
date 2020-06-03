@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div>
+    <input type="checkbox" id="Infinito" name="Infinito" value="Infinito">
+    <label for="Infinito">Infinito</label>
+    <input type="checkbox" id="Completo" name="Completo" value="Completo">
+    <label for="Completo">Completo</label>
+    <input type="checkbox" id="Em progresso" name="Em progresso" value="Em progresso">
+    <label for="Em progresso">Em progresso</label>
+    <input type="checkbox" id="Hype" name="Hype" value="Hype">
+    <label for="Hype">Hype</label><br><br>
+    <button onclick="filtrar()">Filter</button>
+    <br><br>
+  </div>
+
+  <div id='lista'>
+
+  </div>
+
+</body>
+
+<script>
+
+  var obj = JSON.parse(`{
+   "jogos":[
+      {
+         "nome":"Shadow of War",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Shadow of Mordor",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Shadow of the Tomb Raider",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Rise of the Tomb Raider",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Tomb Raider",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Hitman",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Hitman 2",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Control",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Mafia",
+         "estado":"Hype"
+      },
+      {
+         "nome":"Mafia 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Mafia 3",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Grand Theft Auto 3",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Grand Theft Auto Vice City",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Grand Theft Auto San Andreas",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Grand Theft Auto IV",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Grand Theft Auto V",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Grand Theft Auto Online",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Watch Dogs",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Watch Dogs 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Destiny",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Destiny 2",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Red Dead Redemption",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Red Dead Redemption 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Resident Evil 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Resident Evil 3",
+         "estado":"Hype"
+      },
+      {
+         "nome":"Resident Evil 7",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Sekiro",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"The Witcher 3",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Death Stranding",
+         "estado":"Hype"
+      },
+      {
+         "nome":"The Last of Us",
+         "estado":"Completo"
+      },
+      {
+         "nome":"The Last of Us 2",
+         "estado":"Hype"
+      },
+      {
+         "nome":"Star Wars Jedi Fallen Order",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Metro Exodus",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Tom Clancy's The Division 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Days Gone",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Batman Arkham Asylum",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Batman Arkham City",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Batman Arkham Origins",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Batman Arkham Knight",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Metal Gear Solid V: The Phantom Pain",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Fallout 4",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Fallout 3",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Rocket League",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Life is Strange",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Dying Light",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Mortal Kombat 9",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Mortal Kombat X",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Mortal Kombat 11",
+         "estado":"Hype"
+      },
+      {
+         "nome":"Rainbow Six Siege",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Injustice Gods Among Us",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Injustice 2",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Minecraft",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Evolve",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Overwatch",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Dishonored",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Dishonored 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"No Man's Sky",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Civilization V",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Civilization VI",
+         "estado":"Infinito"
+      },
+      {
+         "nome":"Doom",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Doom Eternal",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Deus Ex: Human Revolution",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Deus Ex: Mankind Divided",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Assassin's Creed",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Revelations",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Brotherhood",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed 3",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Black Flag",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Rogue",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Assassin's Creed Unity",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Syndicate",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Origins",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Odyssey",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Assassin's Creed Valhalla",
+         "estado":"Hype"
+      },
+      {
+         "nome":"Saints Row 2",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Saints Row The Third",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Saints Row IV",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Agents of Mayhem",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Bully",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Uncharted",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Uncharted 2",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Uncharted 3",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Uncharted 4",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Uncharted Lost Legacy",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Sly Cooper",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Sly Cooper 2",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Sly Cooper 3",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Sly Cooper 4",
+         "estado":"Completo"
+      },
+      {
+         "nome":"Hitman Absolution",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Hitman Blood Money",
+         "estado":"Em progresso"
+      },
+      {
+         "nome":"Prey",
+         "estado":"Em progresso"
+      }
+   ]
+}`);
+
+  function filtrar() {
+
+    document.getElementById('lista').innerHTML = '';
+
+    var checkBoxEP = document.getElementById("Em progresso");
+    var checkBoxC = document.getElementById("Completo");
+    var checkBoxI = document.getElementById("Infinito");
+    var checkBoxH = document.getElementById("Hype");
+
+    obj.jogos.forEach(element => {
+      if (checkBoxEP.checked == true && element.estado == 'Em progresso' ||
+        checkBoxH.checked == true && element.estado == 'Hype' ||
+        checkBoxI.checked == true && element.estado == 'Infinito' ||
+        checkBoxC.checked == true && element.estado == 'Completo') {
+        var str = element.nome + " - " + element.estado + "<br>";
+        document.getElementById('lista').innerHTML = document.getElementById('lista').innerHTML + str;
+      }
+    });
+  }
+
+</script>
+
+
+</html>
